@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,45 @@
 
 <body>
     <div class="menu">
-        <button onclick="foo()">AAAAAA</button>
+        <div class='price_sb'>
+            <!-- price search bar -->
+            min:
+            <input id="min_pr" type="text" name="search" placeholder="min price">
+            max:
+            <input id="max_pr" type="text" name="search" placeholder="max price">
+        </div>
+        <div class="speed_sb">
+            <!-- price search bar -->
+            min:
+            <input id="min_sp" type="text" name="search" placeholder="min speed">
+            max:
+            <input id="max_sp" type="text" name="search" placeholder="max speed">
+        </div>
+        <div class="name_sb">
+            <input id="name_sb" type="text" name="search" placeholder="name">
+        </div>
+        <button class="search_button" onclick="foo()">SEARCH</button>
         <script>
             function foo(){
-                let url = new URL(window.location.href);
-                let searchParams = new URLSearchParams(url.search);
-                searchParams.set('b', 12);
-                window.location.search = searchParams;
+                console.log(document.getElementById('min_pr').value);
+                let search_params = new URLSearchParams();
+                if(document.getElementById('min_pr').value.length > 0){
+                    search_params.set('min_pr', +document.getElementById('min_pr').value);
+                }
+                if(document.getElementById('max_pr').value.length > 0){
+                    search_params.set('max_pr', document.getElementById('max_pr').value);
+                }
+                if(document.getElementById('min_sp').value.length > 0){
+                    search_params.set('min_sp', document.getElementById('min_sp').value);
+                }
+                if(document.getElementById('max_sp').value.length > 0){
+                    search_params.set('max_sp', document.getElementById('max_sp').value);
+                }
+                if(document.getElementById('name_sb').value.length > 0){
+                    search_params.set('name', document.getElementById('name_sb').value);
+                }
+
+                window.location.search = search_params;
             }
         </script>
     </div>
@@ -23,4 +56,5 @@
         {{content}}
     </div>
 </body>
+
 </html>

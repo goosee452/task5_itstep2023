@@ -16,7 +16,7 @@ function writeFiles(request, response, ...file_paths) {
     file_paths = file_paths.flat(Infinity);
     if (file_paths.length != 0) {
         for (let i = 0; i < file_paths.length; i++) {
-            if (file_paths[i].includes(request.url) && typeof extname != 'undefined') {
+            if (file_paths[i].includes(request.url) && fileTypes.has(extname) == true) {
                 response.writeHead(200, { 'Content-type': fileTypes.get(extname) });
                 fs.readFile(file_paths[i], (err, data) => {
                     if (err) throw err
